@@ -75,6 +75,15 @@ The vault's path and anything specific to your own setup live outside the skill,
 
 Without a map the skill takes the vault from the `OBSIDIAN_VAULT` environment variable, or asks.
 
+## Using it in claude.ai
+
+claude.ai reaches neither your disk nor your `CLAUDE.md`, so there the skill drafts notes for you to paste, and its local map needs another home. Two ways:
+
+- **In your instructions.** Paste the `## obsidian-project-sync local map` section into a Project's instructions (it applies in that Project only) or into your personal preferences in Settings (it applies in every chat).
+- **Inside the package.** Before zipping, add a section named `## Local map for this install` to your copy of `SKILL.md`, just before its first `## ` heading, holding the same lines. The skill reads it as its local map; Project instructions that say otherwise still win. Keep that edited copy outside your clone of this repository and add the section again when you upgrade.
+
+Keep what helps it draft a note you can paste unchanged: the vault's folder names, its frontmatter schema, the language and voice of your notes, your callout styles. Leave out the vault's path, the hook and the script: in claude.ai the skill cannot reach them.
+
 ## Licence
 
 MIT. See [LICENSE](LICENSE).

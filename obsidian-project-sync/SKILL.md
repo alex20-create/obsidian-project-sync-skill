@@ -21,8 +21,11 @@ project's note.
 Look for this skill's local map before anything else: a section named
 `obsidian-project-sync local map` in the user's standing instructions (their
 `CLAUDE.md` files in Claude Code, read from disk rather than from the copy in
-context, which can predate an edit; Project instructions in claude.ai). It
-holds what only that setup knows: the vault's path, the user's own
+context, which can predate an edit; Project instructions or the user's
+preferences in claude.ai). A section named `Local map for this install`
+inside this SKILL.md, added when the skill was packaged for one claude.ai
+account, counts too; standing instructions that say otherwise win. It holds
+what only that setup knows: the vault's path, the user's own
 conventions on top of the vault's (companion notes every project carries,
 callout styles), other files that point at the vault and must change with it.
 Follow it where it speaks; it overrides the defaults here.
