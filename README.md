@@ -1,5 +1,7 @@
 # obsidian-project-sync
 
+> Moved into [alex20-create/session-routines](https://github.com/alex20-create/session-routines). This repo is archived and read-only.
+
 Keeps the project notes of an [Obsidian](https://obsidian.md) vault in step with the work you do in [Claude Code](https://claude.com/claude-code), without trampling the notes you wrote by hand.
 
 The usual way to have an agent "update the docs" is to let it rewrite the file. In a vault that is curated by hand, that loses prose, footer links and plugin fields a little at a time. This skill works the other way round: Claude drafts, a small script replaces exactly one section, and every write is shown as a diff before it happens.
