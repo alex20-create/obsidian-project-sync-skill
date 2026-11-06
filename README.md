@@ -1,6 +1,5 @@
 # obsidian-project-sync
 
-> Moved into [alex20-create/session-routines](https://github.com/alex20-create/session-routines). This repo is archived and read-only.
 
 Keeps the project notes of an [Obsidian](https://obsidian.md) vault in step with the work you do in [Claude Code](https://claude.com/claude-code), without trampling the notes you wrote by hand.
 
