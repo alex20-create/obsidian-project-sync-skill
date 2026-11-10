@@ -46,7 +46,7 @@ Copy the skill folder into your skills directory:
 cp -r obsidian-project-sync ~/.claude/skills/obsidian-project-sync
 ```
 
-On Windows the folder is `%USERPROFILE%\.claude\skills\obsidian-project-sync`. For claude.ai, zip the `obsidian-project-sync/` folder (the folder itself at the root of the zip) and upload it under **Settings → Capabilities → Skills**; there the skill drafts notes for you to paste, since claude.ai cannot reach your disk.
+On Windows the folder is `%USERPROFILE%\.claude\skills\obsidian-project-sync`. For claude.ai, zip the `obsidian-project-sync/` folder (the folder itself at the root of the zip) and upload it under **Settings → Capabilities → Skills**; there it writes to the vault through your linked computer when it can, and drafts notes for you to paste when it cannot.
 
 Then describe your vault once, at its root, in `.claude-vault.json` (every key is optional):
 
@@ -77,12 +77,12 @@ Without a map the skill takes the vault from the `OBSIDIAN_VAULT` environment va
 
 ## Using it in claude.ai
 
-claude.ai reaches neither your disk nor your `CLAUDE.md`, so there the skill drafts notes for you to paste, and its local map needs another home. Two ways:
+claude.ai reaches your vault only while your computer is linked and the vault's folder is connected: with a shell on that computer the skill runs its script there (from a copy already installed on it), with only the file tools it edits the note by hand and checks that each write landed, and without the link it drafts notes for you to paste. It never reads your `CLAUDE.md`, so its local map needs another home. Two ways:
 
 - **In your instructions.** Paste the `## obsidian-project-sync local map` section into a Project's instructions (it applies in that Project only) or into your personal preferences in Settings (it applies in every chat).
 - **Inside the package.** Before zipping, add a section named `## Local map for this install` to your copy of `SKILL.md`, just before its first `## ` heading, holding the same lines. The skill reads it as its local map; Project instructions that say otherwise still win. Keep that edited copy outside your clone of this repository and add the section again when you upgrade.
 
-Keep what helps it draft a note you can paste unchanged: the vault's folder names, its frontmatter schema, the language and voice of your notes, your callout styles. Leave out the vault's path, the hook and the script: in claude.ai the skill cannot reach them.
+Keep what it needs to write or draft a note: the vault's path on your computer (used only while it is linked), its folder names, its frontmatter schema, the language and voice of your notes, your callout styles. The hook does not run in claude.ai.
 
 ## Licence
 
