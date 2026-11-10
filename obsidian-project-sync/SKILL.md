@@ -232,13 +232,50 @@ have gone stale.
 
 If the hook is not installed yet, read `references/hook-install.md`.
 
-## Notes from a claude.ai conversation
+## Notes from claude.ai or a cloud session
 
-claude.ai projects are not on disk, so there is no script there. Write the
-complete markdown in a code block, with frontmatter that follows the schema
-of the user's vault (ask for it, or for one existing note to copy, if you do
-not know it), and say where to save it. If the project already has a note,
-say which section to paste it into rather than creating a loose file.
+Which tools are listed decides how the vault is reached, not the name of the
+environment. If you cannot tell, say so and ask: a wrong guess writes to the
+wrong place.
+
+**A shell on the user's computer is listed**, with the vault's folder
+connected. Commands run on that machine, so everything above applies, but
+this skill's own files live in the conversation's container, not there. Run
+a copy of `vault.py` the computer already has (the skill installed there for
+Claude Code, or one in a connected folder), with its path built on that
+machine. Without one, edit by hand as in the next case. The session log
+exists only if the hook runs on that computer.
+
+**Only file tools for the user's computer are listed**: tools that stage a
+file into the container and commit it back, while the desktop app is linked.
+There is no script, so do its work by hand under the same rules:
+
+- Stage `.claude-vault.json` and the conventions note first, then list the
+  project's folder and stage its main note. That is what `scan` would have
+  returned. If the hook runs on that computer, the project's JSON in the logs
+  folder is the session log.
+- Replace one section's whole body at a time and leave the rest of the file
+  as it was, byte for byte: the last section's footer links, the
+  frontmatter, other sections. Append inside a callout's fence or as quoted
+  lines, as `append` does.
+- In place of the dry run, show each section before and after, saying what
+  stays, what changes and what disappears, and write only after the user's
+  yes.
+- After each commit, confirm the write landed: list the folder and compare
+  the file's size with what you wrote, or stage it again and look for a
+  distinctive line of the new text. The commit reports success even when the
+  old content stays, and the modification time can change while the content
+  does not, so never trust the timestamp alone. If the old content is still
+  there, say so; never report the note as updated.
+- A canvas is read the same way; moving or adding nodes stays the user's
+  call, as above.
+
+**No link to the user's computer.** Nothing on their disk is reachable. Write
+the complete markdown in a code block, with frontmatter that follows the
+schema of the user's vault (ask for it, or for one existing note to copy, if
+you do not know it), and say where to save it. If the project already has a
+note, say which section to paste it into rather than creating a loose file.
+Say plainly that nothing was saved.
 
 ## When something fails
 
