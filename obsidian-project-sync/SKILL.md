@@ -18,13 +18,19 @@ project's note.
 
 ## Local map first
 
-Look for this skill's local map before anything else: a section named
-`obsidian-project-sync local map` in the user's standing instructions (their
-`CLAUDE.md` files in Claude Code, read from disk rather than from the copy in
-context, which can predate an edit; Project instructions or the user's
-preferences in claude.ai). A section named `Local map for this install`
-inside this SKILL.md, added when the skill was packaged for one claude.ai
-account, counts too; standing instructions that say otherwise win. It holds
+Look for this skill's local map before anything else: a file of the user's
+own, kept outside this skill's folder, that their standing instructions
+point to. In Claude Code those are their `CLAUDE.md` files, read from disk
+rather than from the copy in context, which can predate an edit. They either
+name the folder where local maps are kept, and the map is
+`obsidian-project-sync.md` in it, or carry a section named
+`obsidian-project-sync local map` that points to the file or, in an older
+setup, holds the map itself. Read the file in full; if the pointer leads to
+no file, say so and go on as with no map. In claude.ai the map is in the
+Project instructions or the user's preferences. A section named `Local map
+for this install` inside this SKILL.md, added when the skill was packaged
+for one claude.ai account, counts too; standing instructions that say
+otherwise win. It holds
 what only that setup knows: the vault's path, the user's own
 conventions on top of the vault's (companion notes every project carries,
 callout styles), other files that point at the vault and must change with it.
@@ -284,6 +290,9 @@ Say plainly that nothing was saved.
   tools, which is slower and riskier.
 - **"No vault given"**: the local map has no vault path and `OBSIDIAN_VAULT`
   is not set. Ask the user for the path, and offer to add it to the local map.
+  With no map yet, offer to write one as a file in the folder their
+  instructions name for local maps, or one they pick, plus one line in their
+  user-level `CLAUDE.md` naming that folder.
 - **The script stops with exit code 2**: that is the last-section protection
   doing its job. Switch to `--mode append`.
 - **The diff shows more deleted than expected**: do not write. Almost always

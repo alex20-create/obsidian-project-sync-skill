@@ -63,15 +63,23 @@ The hook is optional; `references/hook-install.md` walks through it.
 
 ## The local map
 
-The vault's path and anything specific to your own setup live outside the skill, in a short section of your `CLAUDE.md`, so reinstalling or upgrading never loses them:
+The vault's path and anything specific to your own setup live outside the skill, in a file of your own, so reinstalling or upgrading never loses them. Keep it with your other local maps, for example `~/.claude/local-maps/obsidian-project-sync.md`:
 
 ```markdown
-## obsidian-project-sync local map
+# obsidian-project-sync local map
 - Vault: `~/Obsidian/MyVault` (also passed to the hook with `--vault`).
 - Every project folder carries a `Decisions.md` note; offer to create it when missing.
 - Status callouts: `ad-todo` while open, `ad-done` when finished.
 - `~/code/CLAUDE.md` points at project notes: when a note moves, update the pointer.
 ```
+
+Then say where your local maps are with one line in your user-level `CLAUDE.md`; it serves every skill that reads one:
+
+```markdown
+Local maps: each skill's local map is the file `~/.claude/local-maps/<skill-name>.md`. Read it from disk, in full, before following that skill.
+```
+
+`CLAUDE.md` loads whole into every session, so the map itself stays out of it. A map you already keep as a section of your `CLAUDE.md` still works.
 
 Without a map the skill takes the vault from the `OBSIDIAN_VAULT` environment variable, or asks.
 
@@ -79,7 +87,7 @@ Without a map the skill takes the vault from the `OBSIDIAN_VAULT` environment va
 
 claude.ai reaches your vault only while your computer is linked and the vault's folder is connected: with a shell on that computer the skill runs its script there (from a copy already installed on it), with only the file tools it edits the note by hand and checks that each write landed, and without the link it drafts notes for you to paste. It never reads your `CLAUDE.md`, so its local map needs another home. Two ways:
 
-- **In your instructions.** Paste the `## obsidian-project-sync local map` section into a Project's instructions (it applies in that Project only) or into your personal preferences in Settings (it applies in every chat).
+- **In your instructions.** Paste the map (the lines above) into a Project's instructions (it applies in that Project only) or into your personal preferences in Settings (it applies in every chat).
 - **Inside the package.** Before zipping, add a section named `## Local map for this install` to your copy of `SKILL.md`, just before its first `## ` heading, holding the same lines. The skill reads it as its local map; Project instructions that say otherwise still win. Keep that edited copy outside your clone of this repository and add the section again when you upgrade.
 
 Keep what it needs to write or draft a note: the vault's path on your computer (used only while it is linked), its folder names, its frontmatter schema, the language and voice of your notes, your callout styles. The hook does not run in claude.ai.
